@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Figtree", "Avenir Next", "Segoe UI", sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --color-ink: #1d1915;
+  --color-muted: #6f675f;
+  --color-paper: #f3efe6;
+  --color-card: #fffdf8;
+  --color-line: #e4dcd0;
+  --color-moss: #1e6b48;
+  --color-moss-dark: #154e35;
+  --color-clay: #a34b2d;
+  --color-sidebar: #16211d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  background: var(--color-moss);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:hover { background: var(--color-moss-dark); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn.secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+}
+.btn.secondary:hover { background: #fff; }
+.btn.danger { background: var(--color-clay); }
+
+.field, .area, .select {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  background: white;
+  border-radius: 0.8rem;
+  padding: 0.65rem 0.8rem;
+}
+.area { min-height: 8rem; resize: vertical; }
+
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 1.1rem;
+}
+
+.chip {
+  border: 1px solid var(--color-line);
+  background: #f7f3eb;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  cursor: pointer;
+}
