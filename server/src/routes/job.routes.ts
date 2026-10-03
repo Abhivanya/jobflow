@@ -1,0 +1,20 @@
+import { Router } from "express";
+import * as jobs from "../controllers/job.controller";
+import { requireAuth } from "../middleware/auth";
+import { validateBody } from "../middleware/errorHandler";
+import { analyzeLimiter, discoverLimiter } from "../middleware/rateLimit";
+import { wrap } from "../middleware/wrap";
+import { importUrlSchema, jobPatchSchema, jobSchema, matchSchema, saveRemotiveSchema } from "../validators/schemas";
+
+export const jobRouter = Router();
+jobRouter.use(requireAuth);
+jobRouter.get("/", wrap(jobs.list));
+jobRouter.post("/", validateBody(jobSchema), wrap(jobs.create));
+jobRouter.get("/discover", discoverLimiter, wrap(jobs.discoverJobs));
+jobRouter.post("/discover", discoverLimiter, validateBody(saveRemotiveSchema), wrap(jobs.saveDiscovered));
+jobRouter.post("/import-url", validateBody(importUrlSchema), wrap(jobs.importUrl));
+jobRouter.get("/:id", wrap(jobs.get));
+jobRouter.patch("/:id", validateBody(jobPatchSchema), wrap(jobs.update));
+jobRouter.delete("/:id", wrap(jobs.remove));
+jobRouter.post("/:id/analyze", analyzeLimiter, wrap(jobs.analyze));
+jobRouter.post("/:id/match", validateBody(matchSchema), wrap(jobs.match));

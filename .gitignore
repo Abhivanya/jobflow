@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.local
+uploads/
+uploads-test/
+*.log
+.DS_Store
+
+# personal study notes, not part of the project I show off
+notes/
